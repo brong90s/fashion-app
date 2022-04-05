@@ -6,7 +6,11 @@ import Onboarding from "./src/Authentication/Onboarding";
 const AuthenticationStack = createStackNavigator();
 const AuthenticationNavigator = () => {
   return (
-    <AuthenticationStack.Navigator>
+    <AuthenticationStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <AuthenticationStack.Screen name="Onboarding" component={Onboarding} />
     </AuthenticationStack.Navigator>
   );
