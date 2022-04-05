@@ -49,6 +49,7 @@ const slides = [
     description:
       "Confused about your outfit? Don't worry! Find the best outfit here!",
     color: "#BFEAF5",
+    picture: require("../../../assets/images/1.png"),
   },
   {
     title: "Playful",
@@ -56,6 +57,7 @@ const slides = [
     description:
       "Hating the clothes in your waredrobe? Explore hundreds of outfit ideas",
     color: "#BEECC4",
+    picture: require("../../../assets/images/2.png"),
   },
   {
     title: "Excentric",
@@ -63,6 +65,7 @@ const slides = [
     description:
       "Create your individual & unques style and look amazing everyday",
     color: "#FFE4D9",
+    picture: require("../../../assets/images/3.png"),
   },
   {
     title: "Funky",
@@ -70,6 +73,7 @@ const slides = [
     description:
       "Discover the latest trends in fashion and explore your personality",
     color: "#FAC8D4",
+    picture: require("../../../assets/images/4.png"),
   },
 ];
 
@@ -95,8 +99,8 @@ const Onboarding = () => {
           bounces={false}
           {...scrollHandler}
         >
-          {slides.map(({ title }, index) => (
-            <Slide key={index} right={index % 2} {...{ title }} />
+          {slides.map(({ title, picture }, index) => (
+            <Slide key={index} right={index % 2} {...{ title, picture }} />
           ))}
         </Animated.ScrollView>
       </Animated.View>
