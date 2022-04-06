@@ -8,12 +8,11 @@ import Animated, {
   useAnimatedRef,
 } from "react-native-reanimated";
 
-import Slide, { SLIDE_HEIGHT } from "./Slide";
+import Slide, { SLIDE_HEIGHT, BORDER_RADIUS } from "./Slide";
 import Subslide from "./Subslide";
 import Dot from "./Dot";
 
 const { width } = Dimensions.get("window");
-const BORDER_RADIUS = 75;
 
 const styles = StyleSheet.create({
   container: {

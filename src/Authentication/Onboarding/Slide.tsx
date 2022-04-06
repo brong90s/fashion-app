@@ -4,6 +4,7 @@ import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 const { width, height } = Dimensions.get("window");
 
 export const SLIDE_HEIGHT = 0.61 * height;
+export const BORDER_RADIUS = 75
 
 const styles = StyleSheet.create({
   container: {
@@ -17,6 +18,7 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     width: undefined,
     height: undefined,
+    borderBottomRightRadius: BORDER_RADIUS
   },
   titleContainer: {
     height: 100,
