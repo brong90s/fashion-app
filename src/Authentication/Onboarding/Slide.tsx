@@ -1,10 +1,11 @@
 import React from "react";
-import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
+import { Dimensions, Image, StyleSheet, View } from "react-native";
+import { Text } from "../../components";
 
 const { width, height } = Dimensions.get("window");
 
 export const SLIDE_HEIGHT = 0.61 * height;
-export const BORDER_RADIUS = 75
+export const BORDER_RADIUS = 75;
 
 const styles = StyleSheet.create({
   container: {
@@ -18,17 +19,11 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     width: undefined,
     height: undefined,
-    borderBottomRightRadius: BORDER_RADIUS
+    borderBottomRightRadius: BORDER_RADIUS,
   },
   titleContainer: {
     height: 100,
     justifyContent: "center",
-  },
-  title: {
-    fontSize: 80,
-    color: "white",
-    textAlign: "center",
-    lineHeight: 80,
   },
 });
 
@@ -57,7 +52,7 @@ const Slide = ({ title, right, picture }: SlideProps) => {
         <Image source={picture} style={styles.picture} />
       </View>
       <View style={[styles.titleContainer, { transform }]}>
-        <Text style={styles.title}>{title}</Text>
+        <Text variant="hero">{title}</Text>
       </View>
     </View>
   );
