@@ -11,7 +11,7 @@ const theme: BaseTheme = createTheme({
     primary: palette.strongCyan,
     title: palette.darkBlue,
     body: "rgba(12, 13, 52, 0.7)",
-    lightButton: "rgba(12, 13, 52, 0.05)",
+    grey: "rgba(12, 13, 52, 0.05)",
     white: palette.white,
   },
   spacing: {
@@ -48,6 +48,12 @@ const theme: BaseTheme = createTheme({
       fontWeight: "400",
       color: "body",
     },
+    button: {
+      fontSize: 16,
+      lineHeight: 24,
+      fontWeight: "400",
+      color: "grey"
+    }
   },
 });
 
