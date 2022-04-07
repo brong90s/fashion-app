@@ -1,6 +1,5 @@
-import React, { useEffect, useRef } from "react";
-import { Dimensions, Image, ScrollView, StyleSheet, View } from "react-native";
-// import { useValue } from "react-native-redash";
+import React from "react";
+import { Dimensions, Image, StyleSheet, View } from "react-native";
 import { useScrollHandler } from "react-native-redash";
 import Animated, {
   divide,
@@ -10,9 +9,10 @@ import Animated, {
   useAnimatedRef,
 } from "react-native-reanimated";
 
-import Slide, { SLIDE_HEIGHT, BORDER_RADIUS } from "./Slide";
+import Slide, { SLIDE_HEIGHT } from "./Slide";
 import Subslide from "./Subslide";
 import Dot from "./Dot";
+import { theme } from "../../components";
 
 const { width } = Dimensions.get("window");
 
@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     alignItems: "center",
     justifyContent: "flex-end",
+    borderBottomRightRadius: theme.borderRadii.xl,
   },
   slider: {
     height: SLIDE_HEIGHT,
@@ -36,13 +37,12 @@ const styles = StyleSheet.create({
   footerContent: {
     flex: 1,
     backgroundColor: "white",
-    borderTopLeftRadius: BORDER_RADIUS,
+    borderTopLeftRadius: theme.borderRadii.xl,
   },
   pagination: {
     ...StyleSheet.absoluteFillObject,
-    // width,
     flexDirection: "row",
-    height: BORDER_RADIUS,
+    height: theme.borderRadii.xl,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -101,8 +101,6 @@ const slides = [
 
 const Onboarding = () => {
   const scroll = useAnimatedRef();
-  // const x = useValue(0);
-  // TODO: scrollHandler useScrollHandler?
   const { scrollHandler, x } = useScrollHandler();
   const backgroundColor = Animated.interpolateColors(x, {
     inputRange: slides.map((_, i) => i * width),
@@ -127,9 +125,9 @@ const Onboarding = () => {
               <Image
                 source={picture.src}
                 style={{
-                  width: width - BORDER_RADIUS,
+                  width: width - theme.borderRadii.xl,
                   height:
-                    ((width - BORDER_RADIUS) * picture.height) / picture.width,
+                    ((width - theme.borderRadii.xl) * picture.height) / picture.width,
                 }}
               />
             </Animated.View>
