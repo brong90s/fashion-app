@@ -9,21 +9,29 @@ const height = width * aspectRatio;
 
 interface ContainerProps {
   children: ReactNode;
+  footer: ReactNode;
 }
 
-const Container = ({ children }: ContainerProps) => {
+const Container = ({ children, footer }: ContainerProps) => {
   return (
-    <Box flex={1} backgroundColor="white">
+    <Box flex={1} backgroundColor="secondary">
       {/* <StatusBar barStyle="light-content" /> */}
-      <Box borderBottomLeftRadius="xl" overflow="hidden" height={height * 0.61}>
-        <Image
-          source={assets[0]}
-          style={{
-            width,
-            height,
-          }}
-        />
+      <Box backgroundColor="white">
+        <Box
+          borderBottomLeftRadius="xl"
+          overflow="hidden"
+          height={height * 0.61}
+        >
+          <Image
+            source={assets[0]}
+            style={{
+              width,
+              height,
+            }}
+          />
+        </Box>
       </Box>
+
       <Box flex={1} overflow="hidden">
         <Image
           source={assets[0]}
@@ -42,6 +50,10 @@ const Container = ({ children }: ContainerProps) => {
         >
           {children}
         </Box>
+      </Box>
+
+      <Box height={200} backgroundColor="secondary">
+        {footer}
       </Box>
     </Box>
   );

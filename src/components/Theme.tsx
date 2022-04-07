@@ -14,9 +14,8 @@ const palette = {
 const theme: BaseTheme = createTheme({
   colors: {
     primary: palette.strongCyan,
-    title: palette.darkBlue,
+    secondary: palette.darkBlue,
     body: "rgba(12, 13, 52, 0.7)",
-    button: "#0C0D34",
     grey: "rgba(12, 13, 52, 0.05)",
     darkGrey: "#F4F0EF",
     white: palette.white,
@@ -52,7 +51,7 @@ const theme: BaseTheme = createTheme({
     title2: {
       fontSize: 24,
       lineHeight: 30,
-      color: "title",
+      color: "secondary",
       fontWeight: "600",
     },
     body: {
