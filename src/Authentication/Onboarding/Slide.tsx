@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Dimensions,
-  Image,
   ImageRequireSource,
   StyleSheet,
   View,
@@ -16,11 +15,6 @@ export const BORDER_RADIUS = 75;
 const styles = StyleSheet.create({
   container: {
     width,
-  },
-  underlay: {
-    ...StyleSheet.absoluteFillObject,
-    alignItems: 'center',
-    justifyContent: "flex-end",
   },
   titleContainer: {
     height: 100,
@@ -38,7 +32,7 @@ interface SlideProps {
   };
 }
 
-const Slide = ({ title, right, picture }: SlideProps) => {
+const Slide = ({ title, right }: SlideProps) => {
   const transform = [
     {
       translateY: (SLIDE_HEIGHT - 100) / 2,
@@ -53,15 +47,6 @@ const Slide = ({ title, right, picture }: SlideProps) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.underlay}>
-        <Image
-          source={picture.src}
-          style={{
-            width: width - BORDER_RADIUS,
-            height: ((width - BORDER_RADIUS) * picture.height) / picture.width,
-          }}
-        />
-      </View>
       <View style={[styles.titleContainer, { transform }]}>
         <Text variant="hero">{title}</Text>
       </View>

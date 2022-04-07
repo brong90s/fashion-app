@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from "react";
-import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
+import { Dimensions, Image, ScrollView, StyleSheet, View } from "react-native";
 // import { useValue } from "react-native-redash";
 import { useScrollHandler } from "react-native-redash";
 import Animated, {
   divide,
+  Extrapolate,
+  interpolateNode,
   multiply,
   useAnimatedRef,
 } from "react-native-reanimated";
@@ -18,6 +20,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+  },
+  underlay: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: "center",
+    justifyContent: "flex-end",
   },
   slider: {
     height: SLIDE_HEIGHT,
@@ -50,9 +57,9 @@ const slides = [
     color: "#BFEAF5",
     picture: {
       src: require("../../../assets/images/2.png"),
-      width: 2891, 
-      height: 3744
-    }
+      width: 2891,
+      height: 3744,
+    },
   },
   {
     title: "Playful",
@@ -62,9 +69,9 @@ const slides = [
     color: "#BEECC4",
     picture: {
       src: require("../../../assets/images/1.png"),
-      width: 2701, 
-      height: 3744
-    }
+      width: 2701,
+      height: 3744,
+    },
   },
   {
     title: "Excentric",
@@ -74,9 +81,9 @@ const slides = [
     color: "#FFE4D9",
     picture: {
       src: require("../../../assets/images/3.png"),
-      width: 2401, 
-      height: 3744
-    }
+      width: 2401,
+      height: 3744,
+    },
   },
   {
     title: "Funky",
@@ -85,10 +92,10 @@ const slides = [
       "Discover the latest trends in fashion and explore your personality",
     color: "#FAC8D4",
     picture: {
-      src: require("../../../assets/images/4.png"), 
-      width: 2900, 
-      height: 3744
-    }
+      src: require("../../../assets/images/4.png"),
+      width: 2900,
+      height: 3744,
+    },
   },
 ];
 
@@ -105,6 +112,29 @@ const Onboarding = () => {
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.slider, { backgroundColor }]}>
+        {slides.map(({ picture }, index) => {
+          const opacity = interpolateNode(x, {
+            inputRange: [
+              (index - 0.5) * width,
+              index * width,
+              (index + 0.5) * width,
+            ],
+            outputRange: [0, 1, 0],
+            extrapolate: Extrapolate.CLAMP,
+          });
+          return (
+            <Animated.View style={[styles.underlay, { opacity }]} key={index}>
+              <Image
+                source={picture.src}
+                style={{
+                  width: width - BORDER_RADIUS,
+                  height:
+                    ((width - BORDER_RADIUS) * picture.height) / picture.width,
+                }}
+              />
+            </Animated.View>
+          );
+        })}
         <Animated.ScrollView
           ref={scroll}
           horizontal
