@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
-import { Dimensions, Image, StatusBar, StyleSheet } from "react-native";
+import { Dimensions, Image, Platform, StatusBar, StyleSheet } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import theme, { Box } from "./Theme";
 
 export const assets = [require("./assets/patterns/6.jpg")];
@@ -13,6 +14,8 @@ interface ContainerProps {
 }
 
 const Container = ({ children, footer }: ContainerProps) => {
+  const insets = useSafeAreaInsets();
+
   return (
     <Box flex={1} backgroundColor="secondary">
       {/* <StatusBar barStyle="light-content" /> */}
@@ -52,8 +55,13 @@ const Container = ({ children, footer }: ContainerProps) => {
         </Box>
       </Box>
 
-      <Box height={200} backgroundColor="secondary">
+      <Box
+        backgroundColor="secondary"
+        paddingTop="m"
+        paddingBottom={Platform.OS === "android" ? "m" : ""}
+      >
         {footer}
+        <Box height={insets.bottom} />
       </Box>
     </Box>
   );

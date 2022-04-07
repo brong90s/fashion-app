@@ -6,8 +6,14 @@ import SocialLogin from "../components/SocialLogin";
 interface LoginProps {}
 
 const Login = () => {
+  const footer = (
+    <>
+      <SocialLogin />
+    </>
+  );
+
   return (
-    <Container footer={<SocialLogin />}>
+    <Container {...{ footer }}>
       <View />
     </Container>
   );
