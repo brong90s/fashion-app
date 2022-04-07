@@ -58,7 +58,6 @@ const Container = ({ children, footer }: ContainerProps) => {
       <Box
         backgroundColor="secondary"
         paddingTop="m"
-        paddingBottom={Platform.OS === "android" ? "m" : ""}
       >
         {footer}
         <Box height={insets.bottom} />
