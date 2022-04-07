@@ -13,6 +13,7 @@ import Slide, { SLIDE_HEIGHT } from "./Slide";
 import Subslide from "./Subslide";
 import Dot from "./Dot";
 import { theme } from "../../components";
+import { Routes, StackNavigationProps } from "../../components/Navigation";
 
 const { width } = Dimensions.get("window");
 
@@ -99,7 +100,9 @@ const slides = [
   },
 ];
 
-const Onboarding = () => {
+const Onboarding = ({
+  navigation,
+}: StackNavigationProps<Routes, "Onboarding">) => {
   const scroll = useAnimatedRef();
   const { scrollHandler, x } = useScrollHandler();
   const backgroundColor = Animated.interpolateColors(x, {
@@ -127,7 +130,8 @@ const Onboarding = () => {
                 style={{
                   width: width - theme.borderRadii.xl,
                   height:
-                    ((width - theme.borderRadii.xl) * picture.height) / picture.width,
+                    ((width - theme.borderRadii.xl) * picture.height) /
+                    picture.width,
                 }}
               />
             </Animated.View>
@@ -169,21 +173,25 @@ const Onboarding = () => {
                 transform: [{ translateX: multiply(x, -1) }],
               }}
             >
-              {slides.map(({ subtitle, description }, index) => (
-                <Subslide
-                  key={index}
-                  onPress={() => {
-                    if (scroll.current) {
-                      scroll.current.scrollTo({
-                        x: width * (index + 1),
-                        animated: true,
-                      });
-                    }
-                  }}
-                  last={index === slides.length - 1}
-                  {...{ subtitle, description }}
-                />
-              ))}
+              {slides.map(({ subtitle, description }, index) => {
+                const last = index === slides.length - 1;
+                return (
+                  <Subslide
+                    key={index}
+                    onPress={() => {
+                      if (last) {
+                        navigation.navigate("Welcome");
+                      } else {
+                        scroll.current?.scrollTo({
+                          x: width * (index + 1),
+                          animated: true,
+                        });
+                      }
+                    }}
+                    {...{ subtitle, description, last }}
+                  />
+                );
+              })}
             </Animated.View>
           </View>
         </Animated.View>

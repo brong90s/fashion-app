@@ -4,8 +4,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Onboarding, Welcome } from "./src/Authentication";
 import { theme } from "./src/components";
+import { Routes } from "./src/components/Navigation";
 
-const AuthenticationStack = createStackNavigator();
+const AuthenticationStack = createStackNavigator<Routes>();
 const AuthenticationNavigator = () => {
   return (
     <AuthenticationStack.Navigator

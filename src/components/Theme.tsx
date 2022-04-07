@@ -1,4 +1,9 @@
-import { BaseTheme, createBox, createText, createTheme } from "@shopify/restyle";
+import {
+  BaseTheme,
+  createBox,
+  createText,
+  createTheme,
+} from "@shopify/restyle";
 
 const palette = {
   strongCyan: "#2CB9B0",
@@ -11,7 +16,9 @@ const theme: BaseTheme = createTheme({
     primary: palette.strongCyan,
     title: palette.darkBlue,
     body: "rgba(12, 13, 52, 0.7)",
+    button: "#0C0D34",
     grey: "rgba(12, 13, 52, 0.05)",
+    darkGrey: "#F4F0EF",
     white: palette.white,
   },
   spacing: {
